@@ -236,8 +236,12 @@ Kill(HonorWatchBar)
 Kill(MainMenuBarMaxLevelBar) -- Fixed visual bug when unequipping artifact weapon at max level
 
 -- disable "Show as Experience Bar" checkbox
-ReputationDetailMainScreenCheckBox:Disable()
-ReputationDetailMainScreenCheckBoxText:SetTextColor(0.5, 0.5, 0.5)
+if ReputationDetailMainScreenCheckBox then
+    ReputationDetailMainScreenCheckBox:Disable()
+end
+if ReputationDetailMainScreenCheckBoxText then
+    ReputationDetailMainScreenCheckBoxText:SetTextColor(0.5, 0.5, 0.5)
+end
 
 ----------------------------------==≡≡[ XP BAR ]≡≡==----------------------------------
 
@@ -342,6 +346,7 @@ local function Initial_ActionBarPositioning()
 		-- stance buttons
 		StanceBarLeft:SetPoint("BOTTOMLEFT", StanceBarFrame, 0, -5) -- stance bar texture for when Bottom Left Bar is hidden
 		StanceButton1:ClearAllPoints()
+		StanceButton1:SetPoint("LEFT", StanceBarFrame, 2, -4)
 	end
 end
 
@@ -507,7 +512,7 @@ BagSpaceDisplay.text:SetAllPoints(BagSpaceDisplay)
 local function UpdateBagSpace()
 	local totalFree, freeSlots, bagFamily = 0
 	for i = BACKPACK_CONTAINER, NUM_BAG_SLOTS do
-		freeSlots, bagFamily = GetContainerNumFreeSlots(i)
+		freeSlots, bagFamily = C_Container.GetContainerNumFreeSlots(i)
 		if bagFamily == 0 then
 			totalFree = totalFree + freeSlots
 		end

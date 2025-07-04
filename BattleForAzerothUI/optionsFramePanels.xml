@@ -417,11 +417,7 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						InterfaceOptionsFrame_Show()
-						InterfaceOptionsFrameCategoriesButton5:Click()
-						if InterfaceOptionsFrame:IsShown() then
-							PlaySound(841) -- IgCharacterInfoTab
-						end
+						Settings.OpenToCategory("Interface/ActionBars")
 					</OnClick>
 				</Scripts>
 			</Button>
